@@ -10,9 +10,9 @@ const pool = new Pool({
 
     // connectionString: process.env.DATABASE_URL,
     //precisa para o supabase
-    ssl: {
-        rejectUnauthorized: false // necessário para Supabase
-    }
+    // ssl: {
+    //     rejectUnauthorized: false // necessário para Supabase
+    // }
 });
 
 module.exports = pool;

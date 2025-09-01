@@ -165,9 +165,9 @@ app.use('/produtos', authMiddleware, rota_produto);
 app.use('/movimentacoes', authMiddleware, rota_movimentacao);
 
 //servidor somente local na vercel nao roda
-// app.listen(port, () => {
-//     console.log(`Servidor executando em: http://localhost:${port}`);
-// });
+app.listen(port, () => {
+    console.log(`Servidor executando em: http://localhost:${port}`);
+});
 
 // Exporta para a Vercel rodar
-module.exports = app;
+//module.exports = app;
