@@ -8,9 +8,9 @@ const pool = new Pool({
     password: process.env.DB_PASSWORD,
     port: Number(process.env.DB_PORT),
     //precisa para o supabase
-    // ssl: {
-    //     rejectUnauthorized: false // necessário para Supabase
-    // }
+    ssl: {
+        rejectUnauthorized: false // necessário para Supabase
+    }
 });
 
 module.exports = pool;
