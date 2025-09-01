@@ -120,15 +120,30 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 
-// Sessão
+// Sessão vercel
+app.set('trust proxy', 1); // importante na Vercel/HTTPS
 app.use(
-    session({
-        secret: '1234',
-        resave: false,
-        saveUninitialized: false,
-        cookie: { maxAge: 900000 }
-    })
+  session({
+    secret: '1234',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 900000,
+      secure: process.env.NODE_ENV === 'production', // true em produção
+      sameSite: 'lax' // ajuda com redirecionamentos
+    }
+  })
 );
+
+// // Sessão local
+// app.use(
+//     session({
+//         secret: '1234',
+//         resave: false,
+//         saveUninitialized: false,
+//         cookie: { maxAge: 900000 }
+//     })
+// );
 
 // Middleware de autenticação
 const authMiddleware = (req, res, next) => {
