@@ -1,0 +1,43 @@
+<div class="card-login">
+    <h1 class="card-title">Cadastrar Movimentação</h1>
+
+    <form action="/movimentacoes/cadastro" method="post" class="form-login">
+        <label for="tipo_movimentacao" class="label">Tipo de Movimentação:</label>
+        <select id="tipo_movimentacao" name="tipo_movimentacao" class="input-form" required>
+            <option value="">Selecione</option>
+            <option value="Entrada">Entrada</option>
+            <option value="Saída">Saída</option>
+        </select>
+            
+        <label for="data_movimentacao" class="label">Data da Movimentação:</label>
+        <input type="date" id="data_movimentacao" name="data_movimentacao" class="input-form" required>
+               
+        <label for="quantidade" class="label">Quantidade:</label>
+        <input type="number" id="quantidade" name="quantidade" step="0.01" class="input-form" required>
+        
+        <label for="descricao" class="label">Descrição:</label>
+        <textarea id="descricao" name="descricao" rows="3" class="input-form" required></textarea>
+       
+        <label for="id_produto" class="label">Produto:</label>
+        <select id="id_produto" name="id_produto" class="input-form" required>
+            <% produtos.forEach(produto=> { %>
+                <option value="<%= produto.id_produto %>">
+                <%= produto.nome %>
+                </option>
+            <% }) %>
+        </select>
+        
+        <label for="id_usuario" class="label">Usuário:</label>
+        <select id="id_usuario" name="id_usuario" class="input-form" required>
+            <% usuarios.forEach(usuario=> { %>
+                <option value="<%= usuario.id_usuario %>">
+                <%= usuario.nome_usuario %>
+                </option>
+            <% }) %>
+        </select>
+        
+        <button type="submit" class="botao-form botao-entrar">Salvar</button>
+        
+        <a href="/movimentacoes/listar" class="link-claro">Voltar</a>
+    </form>
+</div>

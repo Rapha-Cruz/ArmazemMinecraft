@@ -1,0 +1,403 @@
+/* Importa fontes para um estilo mais "gamer" e legível */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;700&display=swap');
+
+/* Estilos globais para a página */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #a0c060; /* Fundo verde-relva */
+    color: #333333; /* Texto escuro */
+    min-height: 100vh;
+}
+
+/* Container principal para o layout da página */
+.container-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Estilos para o cabeçalho */
+.header-main {
+    background-color: #6d4c35; /* Cor de madeira escura */
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    padding: 1rem;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+}
+
+.header-content {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Estilos para o menu de navegação (novo) */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.25rem;
+    color: #f9a825;
+    text-shadow: 2px 2px #000;
+}
+
+.nav-logo img {
+    width: 3rem;
+    height: 3rem;
+    margin-right: 0.75rem;
+    border-radius: 0.5rem;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1.5rem; /* Aumenta o espaçamento entre os links */
+}
+
+.nav-links li {
+    margin: 0;
+}
+
+.nav-link {
+    font-size: 1rem;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    color: #f9a825;
+}
+
+/* Estilos para o título */
+h1 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5rem;
+    color: #f9a825; /* Amarelo-dourado */
+    text-shadow: 2px 2px #000;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+/* Estilos para o conteúdo principal */
+.main-content {
+    background-color: #d1b191; /* Cor de areia */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    margin: 1.25rem auto;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    width: 90%;
+    max-width: 1000px;
+    box-sizing: border-box;
+}
+
+/* Mensagem de alerta */
+.mensagem-alerta {
+    text-align: center;
+    font-weight: bold;
+    color: #dc2626; /* Vermelho escuro */
+}
+
+/* Estilos para o formulário de pesquisa */
+.form-pesquisa {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.input-pesquisa {
+    width: 100%;
+    padding: 0.5rem;
+    border: 2px solid #8b5e3c;
+    border-radius: 0.375rem;
+    background-color: #d1b191;
+    color: #333;
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.botao-pesquisa {
+    background-color: #8b5e3c;
+    color: #ffffff;
+    border: 2px solid #6d4c35;
+    border-radius: 0.375rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.botao-pesquisa:hover {
+    background-color: #6d4c35;
+}
+
+/* Estilos para a tabela */
+.tabela-container {
+    overflow-x: auto; /* Permite rolagem em telas pequenas */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background-color: #f9a825; /* Amarelo-dourado para a tabela */
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+thead th {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #6d4c35;
+    color: #ffffff;
+    padding: 0.75rem;
+    text-align: center;
+}
+
+tbody tr {
+    background-color: #d1b191;
+    transition: background-color 0.3s ease;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #b99371; /* Cor para linhas pares */
+}
+
+tbody tr:hover {
+    background-color: #a37953; /* Cor ao passar o mouse */
+}
+
+td {
+    padding: 0.75rem;
+    border: 1px solid #8b5e3c; /* Borda de madeira */
+    text-align: center;
+    color: #333;
+}
+
+/* Estilos para os botões de ação na tabela */
+.form-acoes {
+    display: inline-block;
+    margin: 0 0.25rem;
+}
+
+.botao-acao {
+    font-size: 1.5rem;
+    padding: 0.25rem 0.5rem;
+    border: 2px solid #8b5e3c;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #ffffff;
+    text-shadow: 1px 1px #000;
+}
+
+.botao-acao.editar {
+    background-color: #f9a825;
+}
+
+.botao-acao.editar:hover {
+    background-color: #e67e22;
+}
+
+.botao-acao.remover {
+    background-color: #dc2626;
+}
+
+.botao-acao.remover:hover {
+    background-color: #b91c1c;
+}
+
+.botao-acao.botao-incluir {
+    background-color: #444;
+}
+
+.botao-acao.botao-incluir:hover {
+    background-color: #444;
+}
+
+/* Estilos para a página de login/cadastro */
+.card-login {
+    padding: 2rem;
+    background-color: #8b5e3c; /* Fundo de madeira */
+    border: 4px solid #6d4c35;
+    max-width: 400px;
+    margin: auto;
+    border-radius: 0.5rem;
+}
+
+.card-title {
+    color: #f9a825;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.input-form {
+    padding: 0.5rem;
+    border: 2px solid #6d4c35;
+    background-color: #d1b191;
+    color: #333;
+    border-radius: 0.375rem;
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.botao-form {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: 2px solid #6d4c35;
+    font-weight: bold;
+    color: white;
+    font-family: 'Inter', sans-serif;
+}
+
+.botao-entrar {
+    background-color: #4CAF50; /* Verde */
+}
+
+.botao-entrar:hover {
+    background-color: #45a049;
+}
+
+.botao-cadastrar {
+    background-color: #3498db; /* Azul */
+}
+
+.botao-cadastrar:hover {
+    background-color: #2980b9;
+}
+
+.label {
+    color: #d1b191;
+}
+
+.link-claro {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Estilos para a página de produtos em formato de cards */
+.produtos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.card-produto {
+    background-color: #d1b191; /* Cor de areia */
+    border: 2px solid #8b5e3c; /* Borda de madeira */
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card-produto:hover {
+    transform: translateY(-5px);
+}
+
+.produto-imagem-container {
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.produto-imagem {
+    width: auto;
+    max-width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 0.375rem;
+}
+
+.produto-info {
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.produto-nome {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    color: #6d4c35;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.acoes-card {
+    display: flex;
+    justify-content: space-around;
+    gap: 0.5rem;
+}
+
+/* --- Novos estilos para o painel de dashboard --- */
+
+/* Estilos para o grid de cards do painel */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Estilos para os cards individuais do painel */
+.dashboard-card {
+    background-color: #d1b191; /* Cor de areia */
+    border: 2px solid #8b5e3c; /* Borda de madeira */
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+}
+
+.dashboard-card-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.25rem;
+    color: #f9d77a; /* Cor mais clara para o título */
+    text-shadow: 1px 1px #000;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-card-value {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffeb3b; /* Amarelo ainda mais vibrante para o valor */
+    text-shadow: 2px 2px #000;
+}

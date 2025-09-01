@@ -1,0 +1,41 @@
+<div class="header-content">
+    <form action="/movimentacoes/pesquisar_estoque" method="post" class="form-pesquisa">
+        <input type="text" name="pesquisa" placeholder="Pesquisar..." class="input-pesquisa">
+        <button class="botao-pesquisa">&#128270;</button>
+    </form>
+    <h1>Estoque Atual</h1>
+</div>
+
+<% if (mensagem) { %>
+    <p class="mensagem-alerta">
+    <%= mensagem %>
+    </p>
+<% } %>
+
+<!-- Tabela de Itens -->
+<div class="tabela-container">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Produto</th>
+                <th>Estoque</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% produtos.forEach(produto=> { %>
+                <tr>
+                    <td>
+                        <%= produto.id_produto %>
+                    </td>
+                <td>
+                    <%= produto.nome %>
+                </td>
+                <td>
+                    <%= produto.estoque %>
+                </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>

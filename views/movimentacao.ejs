@@ -1,0 +1,47 @@
+<div class="header-content">
+    <form action="/movimentacoes/pesquisar" method="post" class="form-pesquisa">
+        <input type="text" name="pesquisa" placeholder="Pesquisar..." class="input-pesquisa">
+        <button class="botao-pesquisa">&#128270;</button>
+    </form>        
+    <h1>Movimentações</h1>
+    <form action="nova_movimentacao" method="get">
+        <button class="botao-acao">&#43;</button>
+    </form>
+    
+</div>
+
+<% if (mensagem) { %>
+    <p style="color: red;">
+<%= mensagem %>
+    </p>
+<% } %>
+
+<div class="container_tabela">
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tipo</th>
+                <th>Data</th>
+                <th>Quantidade</th>
+                <th>Descrição</th>
+                <th>Produto</th>
+                <th>Usuário</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% movimentacoes.forEach(movimentacao=> { %>
+                <tr>
+                    <td> <%= movimentacao.id_movimentacao %> </td>
+                    <td> <%= movimentacao.tipo_movimentacao %> </td>
+                    <td> <%= new Date(movimentacao.data_movimentacao).toLocaleDateString('pt-BR') %> </td>
+                    <td> <%= movimentacao.quantidade %> </td>
+                    <td> <%= movimentacao.descricao %> </td>
+                    <td> <%= movimentacao.nome_produto %> </td>
+                    <td> <%= movimentacao.nome_usuario %> </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+            

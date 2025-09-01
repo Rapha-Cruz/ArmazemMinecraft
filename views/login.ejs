@@ -1,0 +1,21 @@
+
+
+<div class="card card-login">
+    <h1 class="card-title">Login</h1>
+    <% if (mensagem) { %>
+        <p class="mensagem-alerta">
+            <%= mensagem %>
+        </p>
+    <% } %>
+    <form action="/usuarios/login" method="post" class="form-login">
+        <label for="usuario" class="label">Usuário:</label>
+        <input type="text" id="usuario" name="usuario" required class="input-form">
+        <label for="senha" class="label">Senha:</label>        
+        <input type="password" id="senha" name="senha" required class="input-form">
+        <button type="submit" class="botao-form botao-entrar">Entrar</button>
+    </form>
+    <p class="label">
+        Ainda não tem uma conta? <a href="/usuarios/novo_usuario" class="link-claro">Cadastre-se aqui</a>.
+    </p>
+</div>
+

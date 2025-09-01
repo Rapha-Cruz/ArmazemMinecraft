@@ -1,0 +1,56 @@
+<div class="header-content">
+    <form action="/produtos/pesquisar" method="post" class="form-pesquisa">
+      <input type="text" name="pesquisa" placeholder="Pesquisar..." class="input-pesquisa">
+     <button class="botao-pesquisa">&#128270;</button>
+    </form>
+    <h1>Armazém</h1>
+    <form action="novo_produto" method="get">
+        <button class="botao-acao">&#43;</button>
+    </form>
+</div>    
+
+<% if (mensagem) { %>
+    <p style="color: red;">
+    <%= mensagem %>
+    </p>
+<% } %>
+        
+<!-- Tabela de Itens -->
+<div class="tabela-container">
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 10%">ID</th>
+                <th>Nome</th>
+                <th>Estoque</th>
+                <th>Estoque Mínimo</th>
+                <th>Valor</th>
+                <th>Imagem</th>
+                <th>Categoria</th>
+                <th style="width:20%">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% produtos.forEach(produto=> { %>
+                <tr>
+                    <td><%= produto.id_produto %></td>
+                    <td><%= produto.nome_produto %></td>
+                    <td><%= produto.estoque %></td>
+                    <td><%= produto.estoque_minimo %></td>
+                    <td><%= produto.valor %></td>
+                    <td><img src="<%= produto.imagem %>" alt="Produto" style="width: 3rem; height: 3rem; margin-right: 0.5rem; "></td>
+                    <td><%= produto.nome_categoria %></td>
+                    <td>
+                        <form action="/produtos/alterar/<%= produto.id_produto %>" method="get" class="form-acoes"> 
+                            <button class="botao-acao editar">&#128393;</button>
+                        </form>
+                        <form action="/produtos/excluir/<%= produto.id_produto %>" method="post" class="form-acoes"
+                            onsubmit="return confirm('Tem certeza que deseja excluir este produto?');">
+                            <button class="botao-acao remover">&#128465;</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>

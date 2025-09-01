@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventário do Jogo</title>
+    <!-- Referência ao arquivo CSS externo para o estilo -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container-principal">
+        <header class="header-main">
+            <div class="header-content">
+                <nav class="nav-menu">
+                    <div class="nav-logo">
+                        <img src="/img/bauMinecraft.png" alt="Ícone de Armazém" class="rounded-lg">
+                        <span>Armazém de Itens</span>
+                    </div>
+                    <ul class="nav-links">             
+                        <li><a href="/" class="nav-link">Home</a></li>           
+                        <li><a href="/produtos/listar" class="nav-link">Armazém</a></li>
+                        <li><a href="/categorias/listar" class="nav-link">Categorias</a></li>
+                        <li><a href="/movimentacoes/listar" class="nav-link">Movimentações</a></li>
+                        <li><a href="/movimentacoes/listar_estoque" class="nav-link">Estoque</a></li>
+                        <li><a href="/logout" class="nav-link">Sair</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <%- body %>
+        </main>
+
+        <footer>
+            &copy; 2025 SESI / SENAI
+        </footer>
+    </div>
+</body>
+</html>

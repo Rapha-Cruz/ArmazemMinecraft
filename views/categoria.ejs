@@ -1,0 +1,48 @@
+
+<div class="header-content">
+    <form action="/categorias/pesquisar" method="post" class="form-pesquisa">
+        <input type="text" name="pesquisa" placeholder="Pesquisar..." class="input-pesquisa">
+        <button class="botao-pesquisa">&#128270;</button>
+    </form>
+    <h1>Categorias</h1>
+    <form action="nova_categoria" method="get">
+        <button class="botao-acao">&#43;</button>
+    </form>
+</div>
+
+<% if (mensagem) { %>
+    <p class="mensagem-alerta">
+        <%= mensagem %>
+    </p>
+<% } %>
+
+<div class="tabela-container">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% categorias.forEach(categoria=> { %>
+                <tr>
+                    <td><%= categoria.id_categoria %></td>
+                    <td><%= categoria.nome %></td>
+                    <td>
+                        <form action="/categorias/alterar/<%= categoria.id_categoria %>" method="get" class="form-acoes">
+                            <button class="botao-acao editar">&#128393;</button>
+                        </form>
+                                                
+                        <form action="/categorias/excluir/<%= categoria.id_categoria %>" method="post" class="form-acoes" 
+                            onsubmit="return confirm('Tem certeza que deseja excluir esta categoria?');">
+                            <button class="botao-acao remover">&#128465;</button>
+                        </form>
+                        
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>

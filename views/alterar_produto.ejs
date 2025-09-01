@@ -1,0 +1,40 @@
+<div class="card card-login">
+    <h1>Alterar Produto</h1>
+
+    <form action="/produtos/alterar/<%= produto.id_produto %>" method="post" class="form-login">
+        <!-- Nome do Produto -->
+        <label for="nome_produto" class="label">Nome do Produto:</label>
+        <input type="text" id="nome_produto" name="nome_produto" value="<%= produto.nome_produto %>" required class="input-form">
+     
+        <!-- Estoque -->
+        <label for="estoque" class="label">Estoque:</label>
+        <input type="number" id="estoque" name="estoque" value="<%= produto.estoque %>" class="input-form" disabled>
+
+        <!-- Estoque Mínimo -->
+        <label for="estoque_minimo" class="label">Estoque Mínimo:</label>
+        <input type="number" id="estoque_minimo" name="estoque_minimo" value="<%= produto.estoque_minimo %>" class="input-form">
+    
+        <label for="valor" class="label">Valor:</label>
+        <input type="number" id="valor" name="valor" value="<%= produto.valor %>" step="0.01" class="input-form">
+   
+        <!-- Imagem -->
+        <label for="imagem" class="label">Imagem (URL):</label>
+        <input type="text" id="imagem" name="imagem" value="<%= produto.imagem %>" class="input-form">
+      
+        <!-- Categoria (Selection Box) -->
+        <label for="categoria" class="label">Categoria:</label>
+        <select id="categoria" name="id_categoria" class="input-form">
+        <% categorias.forEach(categoria=> { %>
+            <option value="<%= categoria.id_categoria %>" <%=categoria.id_categoria===produto.id_categoria ? 'selected' : '' %>>
+            <%= categoria.nome %>
+            </option>
+        <% }) %>
+        </select>
+   
+        <!-- Botão de Enviar -->
+        <button type="submit" class="botao-form botao-cadastrar">Salvar</button>
+       
+        <a href="/produtos/listar" class="link-claro">Voltar para lista de produtos</a>
+        
+    </form>
+</div>
