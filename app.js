@@ -123,17 +123,26 @@ app.use(express.urlencoded({ extended: true }));
 // Sessão vercel
 app.set('trust proxy', 1); // importante na Vercel/HTTPS
 app.use(
-  session({
-    secret: '1234',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      maxAge: 900000,
-      secure: process.env.NODE_ENV === 'production', // true em produção
-      sameSite: 'lax' // ajuda com redirecionamentos
-    }
-  })
-);
+    session({
+      store: new pgSession({
+        pool,
+        tableName: 'session',
+        // Se quiser que crie a tabela automaticamente:
+        createTableIfMissing: true,
+      }),
+      name: 'sid', // nome do cookie (opcional)
+      secret: process.env.SESSION_SECRET || 'troque-isto-por-um-segredo-grande',
+      resave: false,
+      saveUninitialized: false,
+      cookie: {
+        maxAge: 15 * 60 * 1000, // 15 min
+        secure: process.env.NODE_ENV === 'production', // true na Vercel
+        httpOnly: true,
+        sameSite: 'lax', // ajuda com redirects pós-login
+        path: '/',       // padrão
+      },
+    })
+  );
 
 // // Sessão local
 // app.use(
