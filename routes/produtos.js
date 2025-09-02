@@ -14,25 +14,68 @@ router.get('/novo_produto', async (req, res) => {
     }
 });
 
-// Rota para cadastrar um novo produto
+// // Rota para cadastrar um novo produto
+// router.post('/cadastro', async (req, res) => {
+//     const { nome, estoque, estoque_minimo, valor, imagem, id_categoria } = req.body;
+    
+//     try {
+//         // Insere o novo produto no banco de dados
+//         await bd.query(
+//             'INSERT INTO produtos (nome, estoque, estoque_minimo, valor, imagem, id_categoria) VALUES ($1, $2, $3, $4, $5, $6)',
+//             [nome, estoque, estoque_minimo, valor, imagem, id_categoria]
+//         );
+
+//         const mensagem = 'Produto criado com sucesso!';
+//         res.redirect(`/produtos/listar?mensagem=${mensagem}`);
+        
+//     } catch (err) {
+//     console.error('Erro ao cadastrar produto:', err);
+//     res.status(500).send('Erro no servidor ao cadastrar produto');
+//     }
+// });
+// Rota para cadastrar um novo produto e criar movimentação de entrada automaticamente
 router.post('/cadastro', async (req, res) => {
     const { nome, estoque, estoque_minimo, valor, imagem, id_categoria } = req.body;
-    
+
     try {
-        // Insere o novo produto no banco de dados
-        await bd.query(
-            'INSERT INTO produtos (nome, estoque, estoque_minimo, valor, imagem, id_categoria) VALUES ($1, $2, $3, $4, $5, $6)',
+        // Insere o novo produto no banco de dados e retorna o id do produto inserido
+        const resultadoProduto = await bd.query(
+            `INSERT INTO produtos (nome, estoque, estoque_minimo, valor, imagem, id_categoria)
+             VALUES ($1, $2, $3, $4, $5, $6) RETURNING id_produto`,
             [nome, estoque, estoque_minimo, valor, imagem, id_categoria]
         );
 
-        const mensagem = 'Produto criado com sucesso!';
+        const id_produto = resultadoProduto.rows[0].id_produto;
+
+        // Cria a movimentação de entrada automaticamente
+        const usuarioId = req.session.user ? req.session.user.id_usuario : null; // usuário logado
+        if (!usuarioId) {
+            return res.status(401).send('Usuário não autenticado.');
+        }
+
+        const dataAtual = new Date(); // data da movimentação
+        const queryMovimentacao = `
+            INSERT INTO movimentacoes (tipo_movimentacao, data_movimentacao, quantidade, descricao, id_produto, id_usuario)
+            VALUES ($1, $2, $3, $4, $5, $6)
+        `;
+        const valoresMovimentacao = [
+            'Entrada',          // tipo de movimentação
+            dataAtual,          // data da movimentação
+            estoque,            // quantidade igual ao estoque inicial
+            'Entrada de produto novo', // descrição
+            id_produto,         // id do produto inserido
+            usuarioId           // id do usuário que cadastrou
+        ];
+        await bd.query(queryMovimentacao, valoresMovimentacao);
+
+        const mensagem = 'Produto criado com sucesso e movimentação de entrada registrada!';
         res.redirect(`/produtos/listar?mensagem=${mensagem}`);
         
     } catch (err) {
-    console.error('Erro ao cadastrar produto:', err);
-    res.status(500).send('Erro no servidor ao cadastrar produto');
+        console.error('Erro ao cadastrar produto e criar movimentação:', err);
+        res.status(500).send('Erro no servidor ao cadastrar produto e registrar movimentação');
     }
-});
+})
 
 // Rota para listar os produtos
 router.get('/listar', async (req, res) => {
