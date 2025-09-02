@@ -20,12 +20,20 @@ router.post('/login', async (req, res) => {
         // console.log(req.session.user);
         
         if (usuarioSel && await bcrypt.compareSync(senha, usuarioSel.senha)) {
-            req.session.user = {
-                id_usuario: usuarioSel.id_usuario,
-                usuario: usuarioSel.usuario
-            };                
-            // res.status(200).render('index', { mensagem: 'Login efetuado com sucesso!' });
-            res.status(200).redirect('/');
+            req.session.regenerate(err => {
+                if (err) {
+                  console.error('Erro ao regenerar sessão:', err);
+                  return res.status(500).send('Erro no servidor');
+                }
+                req.session.user = {
+                  id_usuario: usuarioSel.id_usuario,
+                  usuario: usuarioSel.usuario
+                };
+                // garante que a sessão foi persistida antes do redirect
+                req.session.save(() => res.redirect('/'));
+              });              
+            // // res.status(200).render('index', { mensagem: 'Login efetuado com sucesso!' });
+            // res.status(200).redirect('/');
         } else {
             res.status(401).render('login', { mensagem: 'Usuário ou senha inválidos' });
         }
