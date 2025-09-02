@@ -105,6 +105,7 @@ const rota_movimentacao = require('./routes/movimentacoes');
 const rota_painel = require('./routes/painel');
 const expressLayouts = require('express-ejs-layouts'); 
 const session = require('express-session');
+const pgSession = require('connect-pg-simple')(session);
 
 const app = express();
 const port = 3000;
