@@ -109,6 +109,13 @@ const pgSession = require('connect-pg-simple')(session);
 const { Pool } = require('pg');        
 require('dotenv').config();             
 
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+});
+
 const app = express();
 const port = 3000;
 
